@@ -1,0 +1,10 @@
+{
+  "name": "message",
+  "version": "0.0.1",
+  "main": "./message.js",
+  "ignore": [
+    "bower_components",
+    "*_test.html",
+    "*_test.js"
+  ]
+}

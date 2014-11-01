@@ -1,0 +1,19 @@
+{
+  "name": "testjs",
+  "version": "0.1.0",
+  "main": "./test.js",
+  "ignore": [
+    "./src/"
+  ],
+  "homepage": "https://github.com/chone/testing",
+  "_release": "0.1.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "0.1.0",
+    "commit": "dc0b5ad77ac66232a9365719a79be367b6bb5dc0"
+  },
+  "_source": "git://github.com/chone/testing.git",
+  "_target": "~0.1.0",
+  "_originalSource": "testjs",
+  "_direct": true
+}
