@@ -79,14 +79,12 @@
       var callbacks = _callback[module][type];
       var len = callbacks.length;
       var onceCallbacks = [];
+      var fn;
       for (var i = 0; i < len; i++) {
-        (function(fn) {
-          setTimeout(function() {
-            fn(data);
-          }, 0);
-        })(callbacks[i]);
-        if (callbacks[i]['_message_once']) {
-          onceCallbacks.push(callbacks[i]);
+        fn = callbacks[i];
+        fn(data);
+        if (fn['_message_once']) {
+          onceCallbacks.push(fn);
         }
       }
       var onceLen = onceCallbacks.length;
