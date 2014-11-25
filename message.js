@@ -14,7 +14,7 @@
    * @param {Function} fn
    * @param {Boolean=} opt_once
    */
-  function on(module, type, fn, opt_once) {
+  function receive(type, module, fn, opt_once) {
     if (_hasData[module] && _hasData[module][type]) {
       fn(_data[module] && _data[module][type]);
       if (opt_once) {
@@ -34,7 +34,7 @@
    * @param {*} opt_data 
    * @param {Boolean=} opt_cache
    */
-  function post(module, type, opt_data, opt_cache) {
+  function post(type, module, opt_data, opt_cache) {
     _fireCallback(module, type, opt_data);
     if (opt_cache) {
       _setCacheData(module, type, opt_data);
@@ -47,7 +47,7 @@
    * @param {String} type
    * @param {Function} fn
    */
-  function off(module, type, fn) {
+  function unreceive(type, module, fn) {
     _removeCallback(module, type, fn);
     return message;
   }
@@ -109,31 +109,16 @@
     }
   }
 
-  function _initBrowserEvent(e) {
-    e.target = e.target || e.srcElement;
-    if (typeof e.stopPropagation != 'function') {
-      e.stopPropagation = function() {
-        e.cancelBubble = true;
-      };
-    }
-    if (typeof e.preventDefault != 'function') {
-      e.preventDefault = function() {
-        e.returnValue = false;    
-      };
-    }
-    return e;
-  }
-
   // export
-  message.on = on;
-  message.off = off;
+  message.receive = receive;
+  message.unreceive = unreceive;
   message.post = post;
 
-  if (window['_handle']) {
-    throw Error('_handle is defined.')
+  if (window['handle']) {
+    throw Error('handle is defined.')
   }
-  window['_handle'] = function(module, type, e) {
-    post(module, type, _initBrowserEvent(e));
+  window['handle'] = function(type, module, e) {
+    post(type, module, e);
   };
 
   if (typeof define == 'function' && define.amd) {
