@@ -1,6 +1,6 @@
 {
   "name": "message",
-  "version": "0.2",
+  "version": "0.2.1",
   "main": "./message.js",
   "ignore": [
     "bower_components",
